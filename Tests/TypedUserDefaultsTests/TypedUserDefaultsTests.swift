@@ -174,13 +174,13 @@ class TypedUserDefaultsTests: XCTestCase {
         XCTAssertNil(UserDefaults.standard.object(forKey: "key"))
         
         // set by key
-        let deadbeef = Data(bytes: [0xde, 0xad, 0xbe, 0xef])
+        let deadbeef = Data([0xde, 0xad, 0xbe, 0xef])
         UserDefaults.standard[key] = deadbeef
         XCTAssertEqual(deadbeef, UserDefaults.standard[key])
         XCTAssertEqual(deadbeef, UserDefaults.standard.object(forKey: "key") as! Data)
         
         // set without key
-        let fee1dead = Data(bytes: [0xfe, 0xe1, 0xde, 0xad])
+        let fee1dead = Data([0xfe, 0xe1, 0xde, 0xad])
         UserDefaults.standard.set(fee1dead, forKey: "key")
         XCTAssertEqual(fee1dead, UserDefaults.standard[key])
         
@@ -437,7 +437,7 @@ class TypedUserDefaultsTests: XCTestCase {
     }
 
     func testDefaultData() {
-        let a5a5a5a5 = Data(bytes: [0xa5, 0xa5, 0xa5, 0xa5, 0xa5, 0xa5, 0xa5, 0xa5])
+        let a5a5a5a5 = Data([0xa5, 0xa5, 0xa5, 0xa5, 0xa5, 0xa5, 0xa5, 0xa5])
         let key = UserDefaults.DefaultKey<Data>("key", default: a5a5a5a5)
         
         // default value
@@ -446,13 +446,13 @@ class TypedUserDefaultsTests: XCTestCase {
         XCTAssertNil(UserDefaults.standard.object(forKey: "key"))
 
         // set by key
-        let deadbeef = Data(bytes: [0xde, 0xad, 0xbe, 0xef])
+        let deadbeef = Data([0xde, 0xad, 0xbe, 0xef])
         UserDefaults.standard[key] = deadbeef
         XCTAssertEqual(deadbeef, UserDefaults.standard[key])
         XCTAssertEqual(deadbeef, UserDefaults.standard.object(forKey: "key") as! Data)
         
         // set without key
-        let fee1dead = Data(bytes: [0xfe, 0xe1, 0xde, 0xad])
+        let fee1dead = Data([0xfe, 0xe1, 0xde, 0xad])
         UserDefaults.standard.set(fee1dead, forKey: "key")
         XCTAssertEqual(fee1dead, UserDefaults.standard[key])
         

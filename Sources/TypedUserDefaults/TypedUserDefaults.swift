@@ -1,13 +1,13 @@
 import Foundation
 
 public extension UserDefaults {
-    public class Key {
+    class Key {
         public let string: String
         public init(_ key: String) { string = key }
     }
     
-    public class OptionalKey<T>: Key {}
-    public class DefaultKey<T>: Key {
+    class OptionalKey<T>: Key {}
+    class DefaultKey<T>: Key {
         public let defaultValue: T
         public init(_ key: String, default value: T) { defaultValue = value; super.init(key) }
     }
@@ -15,26 +15,26 @@ public extension UserDefaults {
 
 public extension UserDefaults {
     // MARK: - Remove by Key
-    public func removeObject(forKey key: Key) {
+    func removeObject(forKey key: Key) {
         removeObject(forKey: key.string)
     }
     
     // MARK: - Access with Key
-    public subscript<T>(key: DefaultKey<T>) -> T {
+    subscript<T>(key: DefaultKey<T>) -> T {
         set { set(newValue, forKey: key.string) }
         get {
             return object(forKey: key.string) as? T ?? key.defaultValue
         }
     }
     
-    public subscript<T>(key: OptionalKey<T>) -> T? {
+    subscript<T>(key: OptionalKey<T>) -> T? {
         set { set(newValue, forKey: key.string) }
         get {
             return object(forKey: key.string) as? T
         }
     }
 
-    public subscript(key: OptionalKey<Float>) -> Float? {
+    subscript(key: OptionalKey<Float>) -> Float? {
         set { set(newValue, forKey: key.string) }
         get {
             // `object(forKey: key.string) as? Float` no longer works since Swift 4.2
@@ -47,7 +47,7 @@ public extension UserDefaults {
 // MARK: - Special treatment for Bool, Int, Float, Double, and URL
 public extension UserDefaults {
     
-    public subscript(key: DefaultKey<Bool>) -> Bool {
+    subscript(key: DefaultKey<Bool>) -> Bool {
         set { set(newValue, forKey: key.string) }
         get {
             return object(forKey: key.string) == nil ?
@@ -55,7 +55,7 @@ public extension UserDefaults {
         }
     }
     
-    public subscript(key: DefaultKey<Int>) -> Int {
+    subscript(key: DefaultKey<Int>) -> Int {
         set { set(newValue, forKey: key.string) }
         get {
             return object(forKey: key.string) == nil ?
@@ -63,7 +63,7 @@ public extension UserDefaults {
         }
     }
     
-    public subscript(key: DefaultKey<Float>) -> Float {
+    subscript(key: DefaultKey<Float>) -> Float {
         set { set(newValue, forKey: key.string) }
         get {
             return object(forKey: key.string) == nil ?
@@ -71,7 +71,7 @@ public extension UserDefaults {
         }
     }
     
-    public subscript(key: DefaultKey<Double>) -> Double {
+    subscript(key: DefaultKey<Double>) -> Double {
         set { set(newValue, forKey: key.string) }
         get {
             return object(forKey: key.string) == nil ?
@@ -79,14 +79,14 @@ public extension UserDefaults {
         }
     }
 
-    public subscript(key: DefaultKey<URL>) -> URL {
+    subscript(key: DefaultKey<URL>) -> URL {
         set { set(newValue, forKey: key.string) }
         get {
             return url(forKey: key.string) ?? key.defaultValue
         }
     }
 
-    public subscript(key: OptionalKey<URL>) -> URL? {
+    subscript(key: OptionalKey<URL>) -> URL? {
         set { set(newValue, forKey: key.string) }
         get {
             return url(forKey: key.string)
