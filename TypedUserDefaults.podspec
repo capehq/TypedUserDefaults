@@ -9,7 +9,8 @@ Pod::Spec.new do |s|
 
   s.homepage         = "https://github.com/nh7a/TypedUserDefaults"
   s.license          = 'MIT'
-  s.source       = { :git => "https://github.com/capehq/TypedUserDefaults.git", :tag => "#{s.version}" }
+  s.source       	= { :git => "https://github.com/capehq/TypedUserDefaults.git", :tag => "#{s.version}" }
+  s.authors 		= 'Naoki Hiroshima'
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
